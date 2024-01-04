@@ -42,20 +42,20 @@ aub-HN2-QC42_midgut_Sucrose_sRNA_rep3
 aub-HN2-QC42_midgut_Pe_sRNA_rep1
 aub-HN2-QC42_midgut_Pe_sRNA_rep2
 aub-HN2-QC42_midgut_Pe_sRNA_rep3
-esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep1
-esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep2
-esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep3
-esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep1
-esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep2
-esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep3
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep3
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep3
-esg-ts_GFP_ovaries_sRNA
-esg-ts_GFP_aub-RNAi_ovaries_sRNA
+esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep1
+esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep2
+esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep3
+esg-Gal4_ISCs-EBs_Pe_sRNA_rep1
+esg-Gal4_ISCs-EBs_Pe_sRNA_rep2
+esg-Gal4_ISCs-EBs_Pe_sRNA_rep3
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep3
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep3
+esg-Gal4_ovaries_sRNA
+esg-Gal4_aub-RNAi_ovaries_sRNA
 
 ### from Siudeja et al., 2021, EMBO J
 ### https://www.ebi.ac.uk/ena/browser/view/PRJEB41757
@@ -266,14 +266,14 @@ done
 
 ### kb tile analysis, comparing between libraries --- START ---
 ### libraries that were used to generate plots
-esg-ts_GFP_ovaries_sRNA # always used as a control wild type ovary library
-esg-ts_GFP_aub-RNAi_ovaries_sRNA # aub-RNAi is expressed in the gut while libraries were made from ovarian RNA, effectively serving as a second wild type ovary library
+esg-Gal4_ovaries_sRNA # always used as a control wild type ovary library
+esg-Gal4_aub-RNAi_ovaries_sRNA # aub-RNAi is expressed in the gut while libraries were made from ovarian RNA, effectively serving as a second wild type ovary library
 ### Below four libraries from sorted ISCs/EBs were compared against the wild type ovary library.
 ### One replicate each from two RNAi conditions, Sucrose and Pe feeding was used.
-esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep2
-esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep3
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1
+esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep2
+esg-Gal4_ISCs-EBs_Pe_sRNA_rep3
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1
 
 ### coordiantes of known piRNA clusters in the dm6 gneome
 ### ${references}/dm6/Dmel_piRNAs-clusters.bed looks as follows:
@@ -295,7 +295,7 @@ bedtools intersect -wo -s -a ${references}/dm6/Dmel_dm6_85percent_0.5kbtiles.25m
 awk '{print $4,$NF/500,$10}' > ${analysis}/tile-analysis/kb-tiles.txt 
 
 ### step 8-2: collecting tile coverage of the libraries of interests
-for lib_sRNA in esg-ts_GFP_ovaries_sRNA esg-ts_GFP_aub-RNAi_ovaries_sRNA esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep2 esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep3 esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1 esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1; do
+for lib_sRNA in esg-Gal4_ovaries_sRNA esg-Gal4_aub-RNAi_ovaries_sRNA esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep2 esg-Gal4_ISCs-EBs_Pe_sRNA_rep3 esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1 esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1; do
 cat ${analysis}/${lib_sRNA}/${lib_sRNA}.tile-coverage.txt >> ${analysis}/tile-analysis/kb-tiles.txt
 done
 
@@ -307,7 +307,7 @@ done
 CUTOFF_38C="130"
 CUTOFF_42AB="320"
 CUTOFF_Flam="400"
-awk -v CUTOFF_38C=${CUTOFF_38C} -v CUTOFF_42AB=${CUTOFF_42AB} -v CUTOFF_Flam=${CUTOFF_Flam} 'BEGIN{FS=","; OFS=","; print "tile_coordinate,Cluster38CLeft,Cluster42AB,ClusterFlam,esg-ts_GFP_aub-RNAi_ovaries_sRNA,esg-ts_GFP_ISCs-EBs_Sucrose_sRNA_rep2,esg-ts_GFP_ISCs-EBs_Pe_sRNA_rep3,esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1,esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1"
+awk -v CUTOFF_38C=${CUTOFF_38C} -v CUTOFF_42AB=${CUTOFF_42AB} -v CUTOFF_Flam=${CUTOFF_Flam} 'BEGIN{FS=","; OFS=","; print "tile_coordinate,Cluster38CLeft,Cluster42AB,ClusterFlam,esg-Gal4_aub-RNAi_ovaries_sRNA,esg-Gal4_ISCs-EBs_Sucrose_sRNA_rep2,esg-Gal4_ISCs-EBs_Pe_sRNA_rep3,esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_sRNA_rep1,esg-Gal4_aub-RNAi_ISCs-EBs_Pe_sRNA_rep1"
 } {if(NR>1 && $5>CUTOFF_38C && $6>CUTOFF_38C && $7>CUTOFF_38C && $8>CUTOFF_38C && $9>CUTOFF_38C && $10>CUTOFF_38C && $2>0.5) print $1,$2,$3,$4,$6/$5,$7/$5,$8/$5,$9/$5,$10/$5;
 else if(NR>1 && $5>CUTOFF_42AB && $6>CUTOFF_42AB && $7>CUTOFF_42AB && $8>CUTOFF_42AB && $9>CUTOFF_42AB && $10>CUTOFF_42AB && $3>0.5) print $1,$2,$3,$4,$6/$5,$7/$5,$8/$5,$9/$5,$10/$5;
 else if(NR>1 && $5>CUTOFF_Flam && $6>CUTOFF_Flam && $7>CUTOFF_Flam && $8>CUTOFF_Flam && $9>CUTOFF_Flam && $10>CUTOFF_Flam && $4>0.5) print $1,$2,$3,$4,$6/$5,$7/$5,$8/$5,$9/$5,$10/$5

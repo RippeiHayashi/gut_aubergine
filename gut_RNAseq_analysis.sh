@@ -19,14 +19,14 @@ mkdir -p ${analysis}/${lib_pA}
 
 ### below are the small RNA libraries processed in this script:
 ### from this study
-esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep1
-esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep2
-esg-ts_GFP_ISCs-EBs_Pe_polyA_rep1
-esg-ts_GFP_ISCs-EBs_Pe_polyA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep2
+esg-Gal4_ISCs-EBs_Sucrose_polyA_rep1
+esg-Gal4_ISCs-EBs_Sucrose_polyA_rep2
+esg-Gal4_ISCs-EBs_Pe_polyA_rep1
+esg-Gal4_ISCs-EBs_Pe_polyA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep2
 
 ### from Senti et al., 2015, G&D
 ### https://www.ebi.ac.uk/ena/browser/view/PRJNA292069
@@ -77,16 +77,16 @@ salmon quant -i ${index_salmon} -l ISR --validateMappings --incompatPrior 0.0 --
 
 
 ### step 3: collecting TE mRNA counts for all libraries
-esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep1
-esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep2
-esg-ts_GFP_ISCs-EBs_Pe_polyA_rep1
-esg-ts_GFP_ISCs-EBs_Pe_polyA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep1
-esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep2
+esg-Gal4_ISCs-EBs_Sucrose_polyA_rep1
+esg-Gal4_ISCs-EBs_Sucrose_polyA_rep2
+esg-Gal4_ISCs-EBs_Pe_polyA_rep1
+esg-Gal4_ISCs-EBs_Pe_polyA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep1
+esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep2
 
-for lib in esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep1 esg-ts_GFP_ISCs-EBs_Sucrose_polyA_rep2 esg-ts_GFP_ISCs-EBs_Pe_polyA_rep1 esg-ts_GFP_ISCs-EBs_Pe_polyA_rep2 esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1 esg-ts_GFP_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2 esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep1 esg-ts_GFP_aub-RNAi_ISCs-EBs_Pe_polyA_rep2 SRR2147092 SRR2147094; do
+for lib in esg-Gal4_ISCs-EBs_Sucrose_polyA_rep1 esg-Gal4_ISCs-EBs_Sucrose_polyA_rep2 esg-Gal4_ISCs-EBs_Pe_polyA_rep1 esg-Gal4_ISCs-EBs_Pe_polyA_rep2 esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep1 esg-Gal4_aub-RNAi_ISCs-EBs_Sucrose_polyA_rep2 esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep1 esg-Gal4_aub-RNAi_ISCs-EBs_Pe_polyA_rep2 SRR2147092 SRR2147094; do
 awk -v LIB=${lib_pA} '{if(NR>1 && $1 !~ "FBtr") print $1,$4,LIB
 }' ${analysis}/${lib_pA}/dm6_122TE_salmon_v1.1.0/quant.sf >> ${analysis}/salmon_TE_counts.txt
 done

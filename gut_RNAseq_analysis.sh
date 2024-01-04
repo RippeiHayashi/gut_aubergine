@@ -7,12 +7,6 @@ http://hannonlab.cshl.edu/fastx_toolkit/
 https://github.com/linsalrob/fastq-pair
 ### salmon/1.1.0
 https://github.com/COMBINE-lab/salmon/releases
-### samtools/1.10
-https://github.com/samtools/samtools/releases/tag/1.10
-### bedtools/2.28.0
-https://github.com/arq5x/bedtools2/releases/tag/v2.28.0
-### kent-ucsc tools
-https://github.com/ucscGenomeBrowser/kent
 ### R/4.0.0
 https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz
 

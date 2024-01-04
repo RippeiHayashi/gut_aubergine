@@ -13,29 +13,29 @@ colnames(table)=c("tile","value","cluster_or_library")
 table_d <- dcast(table, tile~cluster_or_library, value.var="value")
 table_d[is.na(table_d)] <- 0
 
-### plotting tile coverage of esg-ts_GFP_ovaries_sRNA on X and esg-ts_GFP_aub-RNAi_ovaries_sRNA on Y.
+### plotting tile coverage of esg-Gal4_ovaries_sRNA on X and esg-Gal4_aub-RNAi_ovaries_sRNA on Y.
 ### all other plots were made in the same way.
-table_d2 <- subset(table_d, table_d$`esg-ts_GFP_ovaries_sRNA` > 1 & table_d$`esg-ts_GFP_aub-RNAi_ovaries_sRNA` > 1)
+table_d2 <- subset(table_d, table_d$`esg-Gal4_ovaries_sRNA` > 1 & table_d$`esg-Gal4_aub-RNAi_ovaries_sRNA` > 1)
 p<-ggplot(table_d2)+
-  geom_point(aes(x=`esg-ts_GFP_ovaries_sRNA`,
-                 y=`esg-ts_GFP_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.8,colour="gray")+
+  geom_point(aes(x=`esg-Gal4_ovaries_sRNA`,
+                 y=`esg-Gal4_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.8,colour="gray")+
   geom_point(data=subset(table_d2, Cluster42AB > 0.5),
-             aes(x=`esg-ts_GFP_ovaries_sRNA`,
-                 y=`esg-ts_GFP_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="cyan")+
+             aes(x=`esg-Gal4_ovaries_sRNA`,
+                 y=`esg-Gal4_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="cyan")+
   geom_point(data=subset(table_d2, Cluster38CLeft > 0.5),
-             aes(x=`esg-ts_GFP_ovaries_sRNA`,
-                 y=`esg-ts_GFP_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="orange")+
+             aes(x=`esg-Gal4_ovaries_sRNA`,
+                 y=`esg-Gal4_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="orange")+
   geom_point(data=subset(table_d2, ClusterFlam > 0.5),
-             aes(x=`esg-ts_GFP_ovaries_sRNA`,
-                 y=`esg-ts_GFP_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="green")+
+             aes(x=`esg-Gal4_ovaries_sRNA`,
+                 y=`esg-Gal4_aub-RNAi_ovaries_sRNA`),size=2,shape=1,alpha=0.6,colour="green")+
   labs(title="ovary piRNAs vs gut ISCs piRNAs",
-       x="esg-ts_GFP_ovaries_sRNA / RPKM", y="esg-ts_GFP_aub-RNAi_ovaries_sRNA / RPKM")+
+       x="esg-Gal4_ovaries_sRNA / RPKM", y="esg-Gal4_aub-RNAi_ovaries_sRNA / RPKM")+
   scale_x_log10(limits=c(1,20000))+
   scale_y_log10(limits=c(1,20000))+
   coord_fixed()+
   theme_bw()
 
-pdf(file="kb-tiles.esg-ts_GFP_ovaries_sRNA.vs.esg-ts_GFP_aub-RNAi_ovaries_sRNA.pdf",width=8,height=8)
+pdf(file="kb-tiles.esg-Gal4_ovaries_sRNA.vs.esg-Gal4_aub-RNAi_ovaries_sRNA.pdf",width=8,height=8)
 p
 dev.off()
 
